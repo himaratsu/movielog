@@ -9,7 +9,20 @@ gem 'rails', '3.2.8'
 gem 'sqlite3', :group => [:development, :test]
 group :production do
   gem 'pg'
-  end
+end
+
+group :development, :test do
+  # for test
+  gem "rspec"
+  gem "rspec-rails"
+  # to make test faster
+  gem "spork"
+  # to watch test
+  gem "guard"
+  gem "guard-rspec"
+  gem "guard-spork"
+  gem 'rb-fsevent', :require => false
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,7 +39,7 @@ end
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
