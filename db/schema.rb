@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(:version => 20130427085005) do
     t.string   "nickname",                                     :null => false
     t.string   "email",                                        :null => false
     t.string   "encrypt_password",                             :null => false
-    t.integer  "admin_flag",       :limit => 1,                :null => false
+    t.integer  "admin_flag",       :limit => 1, :default => 0, :null => false
     t.string   "icon_url"
     t.integer  "sex",              :limit => 1, :default => 0, :null => false
     t.datetime "birthday"
