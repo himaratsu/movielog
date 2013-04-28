@@ -1,0 +1,42 @@
+<h1>映画詳細画面</h1>
+
+<div>
+映画の詳細情報が表示される
+</div>
+
+<table border="1">
+  <tr>
+    <td>タイトル</td>
+    <td><%= @movie.title %></td>
+  </tr>
+  <tr>
+    <td>説明</td>
+    <td><%= @movie.description %></td>
+  </tr>
+  <tr>
+    <td>カテゴリID</td>
+    <td><%= @movie.category_id %></td>
+  </tr>
+  <tr>
+    <td>画像URL</td>
+    <td><%= @movie.image_url %></td>
+  </tr>
+  <tr>
+    <td>画像の枚数</td>
+    <td><%= @movie.image_num %></td>
+  </tr>
+  <tr>
+    <td>サムネイル画像のURL</td>
+    <td><%= @movie.thumbnail_url %></td>
+  </tr>
+  <tr>
+    <td>作成日時</td>
+    <td><%= @movie.created_at %></td>
+  </td>
+  <tr>
+    <td>更新日時</td>
+    <td><%= @movie.updated_at %></td>
+  </tr>
+</table>
+
+<%= link_to '一覧に戻る', '/movie/' %>

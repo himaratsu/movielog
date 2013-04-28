@@ -1,0 +1,28 @@
+<h1>映画一覧</h1>
+
+<div>
+登録されている全ての映画情報がここに表示される
+</div>
+
+<% @movies.each do |movie| %>
+<table border="1">
+  <tr>
+    <td>タイトル</td>
+    <td><%= movie.title %></td>
+  </tr>
+  <tr>
+    <td>説明</td>
+    <td><%= movie.description %></td>
+  </tr>
+  <tr>
+    <td>画像URL</td>
+    <td><%= movie.image_url %></td>
+  </tr>
+  <tr>
+    <td colspan ='2'>
+      <a href="/movie/show/<%= movie.id %>">詳細画面へすすむ</a>
+    </td>
+  </td>
+</table>
+<% end %>
+
