@@ -1,0 +1,43 @@
+<h1>ユーザの詳細情報</h1>
+
+<div>
+ここにユーザ詳細情報を表示
+</div>
+
+<table border="1">
+  <tr>
+    <td>ユーザ名</td>
+    <td><%= @user.name %></td>
+  </tr>
+  <tr>
+    <td>ニックネーム</td>
+    <td><%= @user.nickname %></td>
+  </tr>
+  <tr>
+    <td>カテゴリID</td>
+    <td><%= @movie.category_id %></td>
+  </tr>
+  <tr>
+    <td>画像URL</td>
+    <td><%= @movie.image_url %></td>
+  </tr>
+  <tr>
+    <td>画像の枚数</td>
+    <td><%= @movie.image_num %></td>
+  </tr>
+  <tr>
+    <td>サムネイル画像のURL</td>
+    <td><%= @movie.thumbnail_url %></td>
+  </tr>
+  <tr>
+    <td>作成日時</td>
+    <td><%= @movie.created_at %></td>
+  </td>
+  <tr>
+    <td>更新日時</td>
+    <td><%= @movie.updated_at %></td>
+  </tr>
+</table>
+
+<%= link_to '一覧に戻る', users_path %>
+

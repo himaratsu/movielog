@@ -1,13 +1,8 @@
-<h1>検索結果画面（映画）</h1>
+<h1>映画一覧</h1>
 
 <div>
-  <b><%= @keyword %></b> で検索した結果
+登録されている全ての映画情報がここに表示される
 </div>
-<br>
-
-<% if @movies.empty? %>
-ヒットした映画はありません
-<% else %>
 
 <% @movies.each do |movie| %>
 <table border="1">
@@ -25,10 +20,10 @@
   </tr>
   <tr>
     <td colspan ='2'>
-      <%= link_to '詳細画面へすすむ', movie_show_path(movie.id) %>
+      <%= link_to '詳細画面へすすむ', movies_show_path(movie.id) %>
     </td>
   </td>
 </table>
+<br>
 <% end %>
 
-<% end %>

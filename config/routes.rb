@@ -2,6 +2,15 @@ Movielog::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
+  match 'top/'            => 'top#index',  :as => :top
+  match 'movies/'         => 'movies#index', :as => :movies
+  match 'movies/show/:id' => 'movies#show', :as => :movies_show
+  match 'users/'          => 'users#index', :as => :users
+  match 'users/show/:id'  => 'users#show', :as => :users_show
+  match 'search/movie/'   => 'search#movie', :as => :search_movie
+  match 'search/user/'    => 'search#user', :as => :search_user
+
+
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
@@ -54,5 +63,5 @@ Movielog::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  match ':controller(/:action(/:id))(.:format)'
+  # match ':controller(/:action(/:id))(.:format)'
 end

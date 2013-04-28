@@ -1,9 +1,21 @@
 <h1>Movie Logへようこそ</h1>
 
 <h2>ログイン</h2>
-<h2>検索フォーム</h2>
+
+<h2>映画を検索</h2>
+<%= form_tag :search_movie, method: :get do %>
+<p><%= text_field_tag "q", params[:q] %>
+<%= submit_tag "検索" %></p>
+<% end %>
+
+<h2>ユーザを検索</h2>
+<%= form_tag :search_user, method: :get do %>
+<p><%= text_field_tag "q", params[:q] %>
+<%= submit_tag "検索" %></p>
+<% end %>
+
 <h2>新着の映画</h2>
 <h2>人気ランキング</h2>
-<h2>あなたにオススメの映画</h2>
 
-<h3><%= link_to '登録されている映画一覧へ', '/movie' %></h3>
+<h3><%= link_to '登録されている映画一覧へ', movies_path %></h3>
+<h3><%= link_to '登録ユーザ一覧', users_path %></h3>
