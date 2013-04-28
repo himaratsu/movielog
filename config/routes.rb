@@ -3,10 +3,12 @@ Movielog::Application.routes.draw do
   # first created -> highest priority.
 
   match 'top/'            => 'top#index',  :as => :top
-  match 'movies/'         => 'movies#index', :as => :movies
-  match 'movies/show/:id' => 'movies#show', :as => :movies_show
-  match 'users/'          => 'users#index', :as => :users
-  match 'users/show/:id'  => 'users#show', :as => :users_show
+
+  resources :movies, :users, only: [:index, :show]
+  #match 'movies/'         => 'movies#index', :as => :movies
+  #match 'movies/show/:id' => 'movies#show', :as => :movies_show
+  #match 'users/'          => 'users#index', :as => :users
+  #match 'users/show/:id'  => 'users#show', :as => :users_show
   match 'search/movie/'   => 'search#movie', :as => :search_movie
   match 'search/user/'    => 'search#user', :as => :search_user
 
