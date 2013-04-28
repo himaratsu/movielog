@@ -11,12 +11,89 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426122305) do
+ActiveRecord::Schema.define(:version => 20130427085005) do
+
+  create_table "actors", :force => true do |t|
+    t.integer  "movie_id",   :null => false
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "title",      :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "directors", :force => true do |t|
+    t.integer  "movie_id",   :null => false
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "friends", :force => true do |t|
+    t.integer  "following_id", :null => false
+    t.integer  "followed_id",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "movies", :force => true do |t|
+    t.string   "title",         :null => false
+    t.string   "description",   :null => false
+    t.integer  "category_id",   :null => false
+    t.string   "image_url",     :null => false
+    t.integer  "image_num",     :null => false
+    t.string   "thumbnail_url", :null => false
+    t.datetime "released_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "reports", :force => true do |t|
+    t.integer  "user_id",                 :null => false
+    t.string   "text"
+    t.integer  "type",       :limit => 1, :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  create_table "reviews", :force => true do |t|
+    t.integer  "user_id",                                :null => false
+    t.integer  "movie_id",                               :null => false
+    t.integer  "rate",       :limit => 1, :default => 0, :null => false
+    t.string   "comment"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+  end
+
+  create_table "states", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_movie_states", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "movie_id",   :null => false
+    t.integer  "state_id",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name",                                         :null => false
+    t.string   "nickname",                                     :null => false
+    t.string   "email",                                        :null => false
+    t.string   "encrypt_password",                             :null => false
+    t.string   "admin_flag",                                   :null => false
+    t.string   "icon_url"
+    t.integer  "sex",              :limit => 1, :default => 0, :null => false
+    t.datetime "birthday"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
 end
