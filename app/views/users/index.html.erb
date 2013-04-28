@@ -1,13 +1,8 @@
-<h1>検索結果画面（ユーザ）</h1>
+<h1>ユーザ一覧</h1>
 
 <div>
-  <b><%= @keyword %></b> で検索した結果
+登録されているユーザ一覧をここに表示
 </div>
-<br>
-
-<% if @users.empty? %>
-ヒットしたユーザはいません
-<% else %>
 
 <% @users.each do |user| %>
 <table border="1">
@@ -24,11 +19,13 @@
     <td><%= user.email %></td>
   </tr>
   <tr>
+    <td>アイコンURL</td>
+    <td><%= user.icon_url %></td>
+  <tr>
     <td colspan ='2'>
-      <%= link_to '詳細画面へすすむ', user_show_path(user.id) %>
+      <a href="/user/show/<%= user.id %>">詳細画面へすすむ</a>
     </td>
   </td>
 </table>
 <% end %>
 
-<% end %>
