@@ -58,3 +58,6 @@ gem 'thin'
 
 # To use debugger
 # gem 'debugger'
+
+# Memcache Client
+gem 'dalli'

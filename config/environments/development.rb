@@ -35,3 +35,7 @@ Movielog::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 end
+
+# Setting of session
+SESSION_STORE_KEY = '_session'
+SESSION_MEMCACHE_SERVER = '127.0.0.1:11211'

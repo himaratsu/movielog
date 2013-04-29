@@ -65,3 +65,7 @@ Movielog::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 end
+
+# Setting of session
+SESSION_STORE_KEY = '_session'
+SESSION_MEMCACHE_SERVER = '127.0.0.1:11211'
