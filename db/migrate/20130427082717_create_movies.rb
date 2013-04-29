@@ -8,6 +8,7 @@ class CreateMovies < ActiveRecord::Migration
 	  t.integer		:image_num,		:null => false
 	  t.string		:thumbnail_url,	:null => false
 	  t.datetime	:released_at
+          t.integer     :org_id,  :null => false
 
       t.timestamps
     end

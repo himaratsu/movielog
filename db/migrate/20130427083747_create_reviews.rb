@@ -5,6 +5,7 @@ class CreateReviews < ActiveRecord::Migration
 	  t.integer	:movie_id,	:null => false
 	  t.integer	:rate,		:null => false, :limit => 1, :default => 0
 	  t.string	:comment
+          t.integer     :spoiler_flag,  :null => false, :limit => 1, :default => 0
 
       t.timestamps
     end
