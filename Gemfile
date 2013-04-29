@@ -22,6 +22,9 @@ group :development, :test do
   gem "guard-rspec"
   gem "guard-spork"
   gem 'rb-fsevent', :require => false
+  # instead of fixture
+  gem 'factory_girl_rails', '3.4.0'
+  gem 'database_cleaner', '0.8.0'
 end
 
 # Gems used only for assets and not required
@@ -40,7 +43,10 @@ gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
+
+# To make web server faster and lighter instead of WEBrick
 gem 'thin'
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

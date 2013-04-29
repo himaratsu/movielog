@@ -5,10 +5,12 @@ describe Category do
   describe 'validate' do
     context 'title is empty' do
       before do
-        @category = Category.new(:id => 0)
+        @category = Category.new(:title => '')
       end
 
-      it { @category.should_not be_valid }
+      it 'fails validation of presence' do
+        @category.should_not be_valid 
+      end
     end
   end
 end
