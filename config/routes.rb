@@ -5,12 +5,14 @@ Movielog::Application.routes.draw do
   match 'top/'            => 'top#index',  :as => :top
 
   resources :movies, :users, only: [:index, :show]
-  #match 'movies/'         => 'movies#index', :as => :movies
-  #match 'movies/show/:id' => 'movies#show', :as => :movies_show
-  #match 'users/'          => 'users#index', :as => :users
-  #match 'users/show/:id'  => 'users#show', :as => :users_show
-  match 'search/movie/'   => 'search#movie', :as => :search_movie
-  match 'search/user/'    => 'search#user', :as => :search_user
+  #match 'movies/'           => 'movies#index',   :as => :movies
+  #match 'movies/show/:id'   => 'movies#show',    :as => :movie
+  #match 'users/'            => 'users#index',    :as => :users
+  #match 'users/show/:id'    => 'users#show',     :as => :user
+  match 'users/follow/:id'   => 'users#follow',   :as => :user_follow
+  match 'users/unfollow/:id' => 'users#unfollow', :as => :user_unfollow
+  match 'search/movie/'      => 'search#movie',   :as => :search_movie
+  match 'search/user/'       => 'search#user',    :as => :search_user
 
 
   # Sample of regular route:
