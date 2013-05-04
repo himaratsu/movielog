@@ -9,6 +9,8 @@ class UsersController < ApplicationController
     @my_num = 1 #いずれセッションを使う
     @user = User.find(params[:id])
     @is_friend = Friend.where('following_id = ? and followed_id = ?', @my_num, @user.id).count
+    @following_count = Friend.where('following_id = ?', @user.id).count
+    @followed_count = Friend.where('followed_id = ?', @user.id).count
   end
 
   def new
