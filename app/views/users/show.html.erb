@@ -10,9 +10,7 @@
 </div>
 
 
-
-
-<% if @is_friend==1 %>
+<% if @is_friend.present? %>
 <div>
 <%= button_to "フォローを解除する", :action => "unfollow",
                                     :method => :delete %>
