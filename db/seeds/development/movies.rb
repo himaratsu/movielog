@@ -7,6 +7,7 @@
     category_id: [1, 2, 3, 4, 5][idx % 5],
     image_url: "image_url",
     image_num: [1,2,3,4][idx % 4],
+    org_id: 11111,
     thumbnail_url: "thumbnail_url",
   }, without_protection: true)
 end

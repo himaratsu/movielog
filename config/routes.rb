@@ -11,6 +11,7 @@ Movielog::Application.routes.draw do
   #match 'users/show/:id'  => 'users#show', :as => :users_show
   match 'search/movie/'   => 'search#movie', :as => :search_movie
   match 'search/user/'    => 'search#user', :as => :search_user
+  match 'movies/sort/:key'    => 'movies#sort', :as => :movies_sort
 
 
   # Sample of regular route:
