@@ -5,6 +5,7 @@ Movielog::Application.routes.draw do
   match 'top/'            => 'top#index',  :as => :top
 
   resources :movies, :users, only: [:index, :show]
+  resources :reviews
   #match 'movies/'         => 'movies#index', :as => :movies
   #match 'movies/show/:id' => 'movies#show', :as => :movies_show
   #match 'users/'          => 'users#index', :as => :users

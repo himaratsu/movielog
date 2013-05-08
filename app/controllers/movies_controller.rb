@@ -5,6 +5,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @reviews = Review.find(:all, :conditions => { :movie_id => params[:id] }, :order => 'updated_at desc')
   end
 
   def new
