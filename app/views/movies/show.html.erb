@@ -48,6 +48,7 @@
 </table>
 
 <h1>レビュー</h1>
+<%= paginate @reviews, :window => 4, :outer_window => 2 %>
 <% @reviews.each do |review| %>
 <table border="1">
   <tr>

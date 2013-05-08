@@ -5,6 +5,8 @@
 </div>
 <br>
 
+<%= paginate @users, :window => 4, :outer_window => 2 %>
+
 <% if @users.empty? %>
 ヒットしたユーザはいません
 <% else %>
@@ -25,7 +27,7 @@
   </tr>
   <tr>
     <td colspan ='2'>
-      <%= link_to '詳細画面へすすむ', user_show_path(user.id) %>
+      <%= link_to '詳細画面へすすむ', user_path(user.id) %>
     </td>
   </td>
 </table>

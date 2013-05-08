@@ -1,11 +1,12 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @movies = Movie.order('id').page(params[:page]).per(10)
   end
 
   def show
     @movie = Movie.find(params[:id])
-    @reviews = Review.find(:all, :conditions => { :movie_id => params[:id] }, :order => 'updated_at desc')
+    @reviews = Kaminari.paginate_array(Review.find(:all, :conditions => { :movie_id => params[:id] }, :order => 'updated_at desc')).page(params[:page]).per(2)
+    #@reviews = Review.order('id').page(params[:page]).per(10)
   end
 
   def new

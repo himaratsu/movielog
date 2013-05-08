@@ -3,7 +3,7 @@
 <div>
 登録されている全ての映画情報がここに表示される
 </div>
-
+<%= paginate @movies, :windows => 4, :outer_window => 2 %>
 <% @movies.each do |movie| %>
 <table border="1">
   <tr>
