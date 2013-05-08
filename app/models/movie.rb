@@ -7,7 +7,9 @@ class Movie < ActiveRecord::Base
   #
   def self.get_all_data(key)
     # ソートキーが正しくない場合はidでソート
-    key = "id" unless self.is_correct_key(key)
+    unless self._is_correct_key(key)
+      key = "id"
+    end
 
     movies = self.find(:all,
                        :order => ["? DESC", key],
@@ -18,9 +20,10 @@ class Movie < ActiveRecord::Base
   #
   #== ソートキーのバリデーションを行う
   #
-  def self.is_correct_key(key)
-    sort_array = ["id", "title", "category_id", "released_at"]
-    return sort_array.include?(key)
+  def self._is_correct_key(key)
+    # カラム名一覧を配列で取得
+    columns = self.column_names
+    return columns.include?(key)
   end
 
 
