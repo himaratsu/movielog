@@ -8,8 +8,11 @@ class FriendsController < ApplicationController
       redirect_to user_path(params[:id]), notice: 'すでにフォローしています'
     else
       @friend = Friend.new(:following_id => @my_id, :followed_id => params[:id])
-      @friend.save
-      redirect_to user_path(params[:id]), notice: 'フォロー成功！'
+      if @friend.save
+        redirect_to user_path(params[:id]), notice: 'フォロー成功！'
+      else
+        redirect_to user_path(params[:id]), notice: 'エラーが発生しました'
+      end
     end
   end
 
@@ -17,7 +20,7 @@ class FriendsController < ApplicationController
     @my_id = '1' #いずれセッションを使う 
     @following = Friend.following(@my_id, params[:id]) 
     if @following.present? 
-      @following.destroy
+      @following.update_attribute(:delete_flag, 1) 
       redirect_to user_path(params[:id]), notice: 'フォロー解除！' 
     else 
       redirect_to user_path(params[:id]), notice: 'フォローしていないユーザです' 

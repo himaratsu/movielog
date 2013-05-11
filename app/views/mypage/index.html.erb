@@ -1,0 +1,26 @@
+<table border="1">
+<tr>
+  <td>なまえ</td>
+  <td><%= @my_info.name %></td>
+</tr>
+<tr>
+  <td>フォローしている</td>
+  <td><%= @following_count %></td>
+</tr>
+<tr>
+  <td>フォローされている</td>
+  <td><%= @followed_count %></td>
+</tr>
+<tr>
+  <td>登録している映画</td>
+  <td><%= @movies.length %></td>
+</tr>
+</table>
+
+<h2>最近追加した映画</h2>
+<ul>
+<% @movies.each do |movie| %>
+  <li><%= link_to movie.title, movie_path(movie.id) %></li>
+<% end %>
+</ul>
+

@@ -14,14 +14,14 @@ describe FriendsController do
   end
 
   describe "GET 'follow'" do
-    it "returns http success" do
+    it "redirect users#show" do
       get :follow, { :id => @user.id }
       response.should redirect_to(:controller=>'users', :action=>'show') 
     end
   end
 
   describe "GET 'unfollow'" do
-    it "returns http success" do
+    it "redirect users#show" do
       get :unfollow, { :id => @user.id }
       response.should redirect_to(:controller=>'users', :action=>'show')
     end
