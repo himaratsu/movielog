@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20130511094215) do
     t.integer  "image_num",     :null => false
     t.string   "thumbnail_url", :null => false
     t.datetime "released_at"
+    t.integer  "org_id",        :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
@@ -62,12 +63,13 @@ ActiveRecord::Schema.define(:version => 20130511094215) do
   end
 
   create_table "reviews", :force => true do |t|
-    t.integer  "user_id",                                :null => false
-    t.integer  "movie_id",                               :null => false
-    t.integer  "rate",       :limit => 1, :default => 0, :null => false
+    t.integer  "user_id",                                  :null => false
+    t.integer  "movie_id",                                 :null => false
+    t.integer  "rate",         :limit => 1, :default => 0, :null => false
     t.string   "comment"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.integer  "spoiler_flag", :limit => 1, :default => 0, :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   create_table "states", :force => true do |t|
