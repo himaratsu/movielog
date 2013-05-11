@@ -3,7 +3,7 @@
 class FriendsController < ApplicationController
   def follow
     @my_id = '1' #いずれセッションを使う
-    @is_following = Friend.is_following(@my_id, params[:id])
+    @is_following = Friend.is_following?(@my_id, params[:id])
     if @is_following
       redirect_to user_path(params[:id]), notice: 'すでにフォローしています'
     else

@@ -16,7 +16,7 @@ class Friend < ActiveRecord::Base
     return @following
   end
 
-  def self.is_following(following_id, followed_id)
+  def self.is_following?(following_id, followed_id)
     @following = self.following(following_id,followed_id)
     return @following.present?
   end
