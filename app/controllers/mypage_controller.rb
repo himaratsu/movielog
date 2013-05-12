@@ -21,5 +21,8 @@ class MypageController < ApplicationController
     end
     @movies = Movie.find(:all, :conditions => 'id IN(' + @movie_ids.join(",") + ')' )
 
+    # 自分が書いたレビューのリスト
+    @reviews = Review.find(:all, :conditions => ['user_id = ?', @my_id])
+
   end
 end
