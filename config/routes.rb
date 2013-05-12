@@ -10,7 +10,7 @@ Movielog::Application.routes.draw do
   match 'search/movie/'        => 'search#movie',     :as => :search_movie
   match 'search/user/'         => 'search#user',      :as => :search_user
   match 'mypage'         => 'mypage#index',     :as => :mypage
-
+  match 'movies/sort/:key'    => 'movies#sort', :as => :movies_sort
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
