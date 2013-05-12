@@ -32,5 +32,4 @@ class Movie < ActiveRecord::Base
     return columns.include?(key)
   end
 
-
 end

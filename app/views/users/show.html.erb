@@ -1,8 +1,26 @@
 <h1>ユーザの詳細情報</h1>
 
+<% if notice %>
+<p id="notice"><font color="red"><%= notice %></font></p>
+<% end %>
+
 <div>
-ここにユーザ詳細情報を表示
+フォロー数 : <%= @following_count %><br>
+フォロワー数 : <%= @followed_count %><br>
 </div>
+
+
+<% if @is_following %>
+<div>
+<%= button_to "フォローを解除する", :controller => "friends",
+                                    :action => "unfollow" %>
+</div>
+<% else %>
+<div>
+<%= button_to "このユーザをフォロー", :controller => "friends",
+                                      :action => "follow" %>
+</div>
+<% end %>
 
 <table border="1">
   <tr>
