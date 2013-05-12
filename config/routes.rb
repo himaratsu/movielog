@@ -9,6 +9,7 @@ Movielog::Application.routes.draw do
   match 'friends/unfollow/:id' => 'friends#unfollow', :as => :friend_unfollow
   match 'search/movie/'        => 'search#movie',     :as => :search_movie
   match 'search/user/'         => 'search#user',      :as => :search_user
+  match 'mypage'         => 'mypage#index',     :as => :mypage
 
 
   # Sample of regular route:

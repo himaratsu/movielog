@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130429030701) do
+ActiveRecord::Schema.define(:version => 20130511094215) do
 
   create_table "actors", :force => true do |t|
     t.integer  "movie_id",   :null => false
@@ -34,10 +34,11 @@ ActiveRecord::Schema.define(:version => 20130429030701) do
   end
 
   create_table "friends", :force => true do |t|
-    t.integer  "following_id", :null => false
-    t.integer  "followed_id",  :null => false
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "following_id",                             :null => false
+    t.integer  "followed_id",                              :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.integer  "delete_flag",  :limit => 1, :default => 0, :null => false
   end
 
   create_table "movies", :force => true do |t|
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20130429030701) do
     t.integer  "image_num",     :null => false
     t.string   "thumbnail_url", :null => false
     t.datetime "released_at"
+    t.integer  "org_id",        :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
@@ -61,12 +63,13 @@ ActiveRecord::Schema.define(:version => 20130429030701) do
   end
 
   create_table "reviews", :force => true do |t|
-    t.integer  "user_id",                                :null => false
-    t.integer  "movie_id",                               :null => false
-    t.integer  "rate",       :limit => 1, :default => 0, :null => false
+    t.integer  "user_id",                                  :null => false
+    t.integer  "movie_id",                                 :null => false
+    t.integer  "rate",         :limit => 1, :default => 0, :null => false
     t.string   "comment"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.integer  "spoiler_flag", :limit => 1, :default => 0, :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   create_table "states", :force => true do |t|
