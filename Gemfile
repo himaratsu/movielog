@@ -50,6 +50,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # To make web server faster and lighter instead of WEBrick
 gem 'thin'
 
+# To create rake task
+gem 'rake'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

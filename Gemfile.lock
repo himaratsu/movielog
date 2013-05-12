@@ -175,6 +175,7 @@ DEPENDENCIES
   kaminari
   pg
   rails (= 3.2.8)
+  rake
   rb-fsevent
   rspec
   rspec-rails
