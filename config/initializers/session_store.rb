@@ -1,5 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
+=begin
 require 'action_dispatch/middleware/session/dalli_store'
 
 Movielog::Application.config.session_store :dalli_store
@@ -9,6 +10,7 @@ Movielog::Application.config.session_options = {
   :memcache_server => SESSION_MEMCACHE_SERVER,
   :expire_after => 1.days
 }
+=end
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information

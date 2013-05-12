@@ -11,8 +11,14 @@ class Movie < ActiveRecord::Base
       key = "id"
     end
 
+    order = "DESC"
+    # タイトルの場合のみ昇順
+    if key == "title" 
+      order = "ASC"
+    end
+
     movies = self.find(:all,
-                       :order => ["? DESC", key],
+                       :order => [key+" "+order],
                       )
     return movies 
   end
