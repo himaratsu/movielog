@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
   end
 
   def sort
-    @movies = Movie.get_all_data(params[:key])
+    @movies = Kaminari.paginate_array(Movie.get_all_data(params[:key])).page(params[:page]).per(10)
     render :action => "index"
   end
 
