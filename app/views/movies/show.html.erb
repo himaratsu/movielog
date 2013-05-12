@@ -47,4 +47,43 @@
   </tr>
 </table>
 
-<%= link_to '一覧に戻る', movies_path %>
+<h1>レビュー</h1>
+<%= paginate @reviews, :window => 4, :outer_window => 2 %>
+<% @reviews.each do |review| %>
+<table border="1">
+  <tr>
+    <td>映画ID(仮)</td>
+    <td><%= review.movie_id %></td>
+  </tr>
+  <tr>
+    <td>評価</td>
+    <td><%= review.rate %></td>
+  </tr>
+  <tr>
+    <td>コメント</td>
+    <td><%= review.comment %></td>
+  </tr>
+  <tr>
+    <td>ネタバレ</td>
+    <td><%= review.spoiler_flag %></td>
+  </tr>
+  <tr>
+    <td>作成日時</td>
+    <td><%= review.created_at %></td>
+  </tr>
+  <tr>
+  <tr>
+    <td>更新日時</td>
+    <td><%= review.updated_at %></td>
+  </tr>
+  <tr>
+    <td>ユーザーID(仮)</td>
+    <td><%= review.user_id %></td>
+  </tr>
+</table>
+<% end %>
+
+
+<p><%= link_to 'この映画のレビューを投稿する', { controller:"reviews", action:"new",movie_id:@movie.id } %></p>
+
+<p><%= link_to '一覧に戻る', movies_path %></p>
