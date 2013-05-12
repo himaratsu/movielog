@@ -39,6 +39,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+# for pagination
+gem 'kaminari'
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password

@@ -3,7 +3,7 @@
 <div>
 登録されているユーザ一覧をここに表示
 </div>
-
+<%= paginate @users, :window => 4, :outer_window => 2 %>
 <% @users.each do |user| %>
 <table border="1">
   <tr>

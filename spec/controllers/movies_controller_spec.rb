@@ -14,6 +14,7 @@ describe MoviesController do
         :title => 'title',
         :description => 'description',
         :category_id => 1,
+        :org_id => 1,
         :image_url => 'image_url',
         :image_num => 1,
         :thumbnail_url => 'thumbnail_url',

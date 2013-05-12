@@ -5,6 +5,8 @@
 </div>
 <br>
 
+<%= paginate @movies, :window => 4, :outer_window => 2 %>
+
 <% if @movies.empty? %>
 ヒットした映画はありません
 <% else %>
@@ -25,7 +27,7 @@
   </tr>
   <tr>
     <td colspan ='2'>
-      <%= link_to '詳細画面へすすむ', movie_show_path(movie.id) %>
+      <%= link_to '詳細画面へすすむ', movie_path(movie.id) %>
     </td>
   </td>
 </table>

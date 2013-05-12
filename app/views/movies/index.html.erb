@@ -3,6 +3,7 @@
 <div>
 登録されている全ての映画情報がここに表示される
 </div>
+<%= paginate @movies, :windows => 4, :outer_window => 2 %>
 並び替え
 <%= link_to '▼タイトル', movies_sort_path("title") %>/
 <%= link_to '▼カテゴリ', movies_sort_path("category_id") %>/
