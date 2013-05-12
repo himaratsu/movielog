@@ -5,13 +5,11 @@ Movielog::Application.routes.draw do
   match 'top/'            => 'top#index',  :as => :top
 
   resources :movies, :users, only: [:index, :show]
-  resource :reviews
+  resources :reviews
   match 'search/movie/'   => 'search#movie', :as => :search_movie
   match 'search/user/'    => 'search#user', :as => :search_user
   match 'friends/follow/:id'   => 'friends#follow',   :as => :friend_follow
   match 'friends/unfollow/:id' => 'friends#unfollow', :as => :friend_unfollow
-  match 'search/movie/'        => 'search#movie',     :as => :search_movie
-  match 'search/user/'         => 'search#user',      :as => :search_user
   match 'mypage'         => 'mypage#index',     :as => :mypage
   match 'movies/sort/:key'    => 'movies#sort', :as => :movies_sort
 
