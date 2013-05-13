@@ -1,18 +1,19 @@
-
+# coding: utf-8
 class Movie < ActiveRecord::Base
   attr_accessible :id, :title, :description, :category_id, :image_url, :image_num, :org_id, :thumbnail_url, :released_at
-
+  
+  has_many :reviews
   #
-  #== key ã§ã‚½ãƒ¼ãƒˆã—ãŸæ˜ ç”»æƒ…å ±ã‚’è¿”å´ã™ã‚‹
+  #== key ¤Ç¥½¡¼¥È¤·¤¿±Ç²è¾ðÊó¤òÊÖµÑ¤¹¤ë
   #
   def self.get_all_data(key)
-    # ã‚½ãƒ¼ãƒˆã‚­ãƒ¼ãŒæ­£ã—ããªã„å ´åˆã¯idã§ã‚½ãƒ¼ãƒˆ
+    # ¥½¡¼¥È¥­¡¼¤¬Àµ¤·¤¯¤Ê¤¤¾ì¹ç¤Ïid¤Ç¥½¡¼¥È
     unless self._is_correct_key(key)
       key = "id"
     end
 
     order = "DESC"
-    # ã‚¿ã‚¤ãƒˆãƒ«ã®å ´åˆã®ã¿æ˜‡é †
+    # ¥¿¥¤¥È¥ë¤Î¾ì¹ç¤Î¤ß¾º½ç
     if key == "title" 
       order = "ASC"
     end
@@ -24,10 +25,10 @@ class Movie < ActiveRecord::Base
   end
 
   #
-  #== ã‚½ãƒ¼ãƒˆã‚­ãƒ¼ã®ãƒãƒªãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¡Œã†
+  #== ¥½¡¼¥È¥­¡¼¤Î¥Ð¥ê¥Ç¡¼¥·¥ç¥ó¤ò¹Ô¤¦
   #
   def self._is_correct_key(key)
-    # ã‚«ãƒ©ãƒ åä¸€è¦§ã‚’é…åˆ—ã§å–å¾—
+    # ¥«¥é¥àÌ¾°ìÍ÷¤òÇÛÎó¤Ç¼èÆÀ
     columns = self.column_names
     return columns.include?(key)
   end

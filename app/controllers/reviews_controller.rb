@@ -16,9 +16,8 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(params[:review])
-
     if @review.save
-      redirect_to @review, notice: "Successfully created!!"
+      redirect_to movie_review_path(@review.movie_id, @review.id), notice: "Successfully created!!"
     else
       render "new"
     end

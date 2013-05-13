@@ -4,8 +4,13 @@ Movielog::Application.routes.draw do
 
   match 'top/'            => 'top#index',  :as => :top
 
-  resources :movies, :users, only: [:index, :show]
-  resources :reviews
+  resources :users, only: [:index, :show]
+  resources :movies do
+    resources :reviews
+  end
+
+  #resource :reviews, only: [:new, :create, :show]
+  match 'user_movie_states/register' => 'user_movie_states#register', :as => :state_register
   match 'search/movie/'   => 'search#movie', :as => :search_movie
   match 'search/user/'    => 'search#user', :as => :search_user
   match 'friends/follow/:id'   => 'friends#follow',   :as => :friend_follow

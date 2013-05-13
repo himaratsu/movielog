@@ -1,6 +1,9 @@
+# coding: utf-8
 class Review < ActiveRecord::Base
-  belongs_to :user
   attr_accessible :user_id, :movie_id, :rate, :comment, :spoiler_flag
+
+  belongs_to :user
+  belongs_to :movie
 
   validates :user_id,      :numericality => true
   validates :movie_id,     :numericality => true
