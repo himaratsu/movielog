@@ -2,78 +2,86 @@
 require 'spec_helper'
 
 describe UserMovieState do
-  describe 'validation' do
-    before do
-      @user_movie_state = FactoryGirl.build(:user_movie_state_default)
+  subject {
+    UserMovieState.new(
+      :user_id => 99,
+      :movie_id => 99,
+      :state_id => 0,
+    )
+  }
+
+  describe 'user_id' do
+    context 'when number' do
+      it {
+        should be_valid
+      }
     end
 
-    context 'numeric user_id' do
-      it 'passes validation of user_id' do
-        @user_movie_state.should be_valid
-      end
+    context 'when not a number' do
+      it {
+        subject.user_id = 'aaa'
+        should_not be_valid
+      }
     end
 
-    context 'non-numeric user_id' do
-      it 'fails validation of user_id' do
-        @user_movie_state.user_id = 'aaa'
-        @user_movie_state.should_not be_valid
-      end
-    end
-
-    context 'empty user_id' do
-      it 'fails validation of user_id' do
-        @user_movie_state.user_id = ''
-        @user_movie_state.should_not be_valid
-      end
+    context 'when empty' do
+      it {
+        subject.user_id = ''
+        should_not be_valid
+      }
     end
 
 
     context 'numeric movie_id' do
       it 'passes validation of movie_id' do
-        @user_movie_state.should be_valid
+        should be_valid
       end
     end
-
-    context 'non-numeric movie_id' do
-      it 'fails validation of movie_id' do
-        @user_movie_state.movie_id = 'aaa'
-        @user_movie_state.should_not be_valid
-      end
-    end
-
-    context 'empty movie_id' do
-      it 'fails validation of movie_id' do
-        @user_movie_state.user_id = ''
-        @user_movie_state.should_not be_valid
-      end
-    end
-
-    context 'numeric state_id' do
-      it 'passes validation of state_id' do
-        @user_movie_state.should be_valid
-      end
-    end
-
-    context 'non-numeric state_id' do
-      it 'fails validation of state_id' do
-        @user_movie_state.state_id = 'aaa'
-        @user_movie_state.should_not be_valid
-      end
-    end
-
-    context 'empty state_id' do
-      it 'fails validation of state_id' do
-        @user_movie_state.state_id = ''
-        @user_movie_state.should_not be_valid
-      end
-    end
-
-    context 'too big state_id' do
-      it 'fails validation of state_id' do
-        @user_movie_state.state_id = 4
-        @user_movie_state.should_not be_valid
-      end
-    end
-
   end
+ 
+  describe "movie_id" do
+    context 'when number' do
+      it {
+        subject.movie_id = 'aaa'
+        should_not be_valid
+      }
+    end
+
+    context 'when empty' do
+      it {
+        subject.movie_id = ''
+        should_not be_valid
+      }
+    end
+  end
+
+  describe "state_id" do
+    context 'when numeric' do
+      it {
+        should be_valid
+      }
+    end
+
+    context 'when not a number' do
+      it {
+        subject.state_id = 'aaa'
+        should_not be_valid
+      }
+    end
+
+    context 'when empty' do
+      it {
+        subject.state_id = ''
+        should_not be_valid
+      }
+    end
+
+    context 'when too big number' do
+      it {
+        subject.state_id = 4
+        should_not be_valid
+      }
+    end
+  end
+
 end

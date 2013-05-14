@@ -15,20 +15,15 @@ describe ReviewsController do
 
   describe "GET 'show'" do
     it "returns http success" do
-      get :show, { :id => @review.id } 
+      get :show, { :id => @review.id, :movie_id => @review.movie_id } 
       response.should be_success
     end
   end
 
   describe "GET 'new'" do
     it "returns http success" do
-      get :new, { :movie_id => @review.movie_id }
+      get :new, { :id => @review.id, :movie_id => @review.movie_id }
       response.should be_success
-    end
-
-    it "redirects to top when no params" do
-      get :new
-      response.should redirect_to "/"
     end
   end
 end
