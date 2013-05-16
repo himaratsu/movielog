@@ -3,15 +3,17 @@
 require "open-uri"
 require "rubygems"
 require "nokogiri"
+require "csv"
 
 # urlの先の画像を保存する
-def save(org_id, url)
+def save(org_id, url, name)
   # jpg?以降のノイズを消去
   @path = url.gsub(/(jpg?.*)/, "jpg")
 
   # 保存先のパスを生成
-  fileName = File.basename(@path)
-  dirName = "/var/tmp/movielog/" + org_id + "/"  
+  p name
+  fileName = org_id + "_00#{name}.jpg"
+  dirName = "/var/tmp/movielog/img/" + org_id + "/"  
   filePath = dirName + fileName
 
   # 保存先のディレクトリが存在しなければ作成する
@@ -26,7 +28,7 @@ def save(org_id, url)
 end
 
 # 画像を保存
-def save_image(org_id, url)
+def save_image(org_id, url, image_index)
   charset = nil
   html = open(url) do |f|
     charset = f.charset
@@ -38,12 +40,12 @@ def save_image(org_id, url)
   doc.xpath('//div[@id="movie_photo"]/a/img').each do |node|
     # 画像URLを取得して保存
     image_url = node.attribute("src").value
-    save(org_id, image_url)
+    save(org_id, image_url, image_index)
   end
 end
 
 # サムネイル画像群を保存
-def save_thumbnail(org_id, url)
+def save_thumbnail(org_id, url, image_index)
   charset = nil
   html = open(url) do |f|
     charset = f.charset
@@ -55,7 +57,21 @@ def save_thumbnail(org_id, url)
   doc.xpath('//div[@id="photo"]/a/img').each do |node|
     # サムネイル画像を取得して保存
     thumb_url = node.attribute("src").value
-    save(org_id, thumb_url)
+    save(org_id, thumb_url, image_index)
+  end
+end
+
+# CSV書き出し
+def output_csv(title, description, category_id, image_num, released_at, org_id)
+  fileName = "#{org_id}.csv"
+  dirName = "/var/tmp/movielog/csv/" + org_id + "/"
+  filePath = dirName + fileName
+
+  # 保存先のディレクトリが存在しなければ作成する
+  FileUtils.mkdir_p(dirName) unless FileTest.exist?(dirName)
+
+  CSV.open(filePath, "w") do |writer|
+    writer << [title, description, category_id, image_num, released_at, org_id]
   end
 end
 
@@ -85,52 +101,53 @@ end
 # パース開始
 doc.xpath('//div[@class="moveInfoBox"]').each do |node|
   #title
-  p node.xpath('h2').text
+  title = node.xpath('h2').text
 
+  released_at = "2000-00-00"
   begin
-    #released_at
-    p node.xpath('span[@class="opn_date"]/strong').text
     #releaset_at (YYYY-MM-DD)
-    p node.xpath('span[@class="opn_date"]/strong').attribute("content").value
+    released_at = node.xpath('span[@class="opn_date"]/strong').attribute("content").value
   rescue
-    p "not found released_at"
+    released_at = "2000-00-00"
   end
 
   begin
     #image_url
+    image_index = 1
     p node.xpath('//div[@class="pictBox"]/a/img[@class="main"]').attribute("src").value
   rescue
     p "not found image"
   else
     #save image
     poster_url = url+"photo/"
-    save_image(org_id, poster_url)
-  end 
+    save_image(org_id, poster_url, image_index)
+  end
 
   #thumbs
   thumbs = node.xpath('//p[@class="thumBox"]/a')
   p thumbs.size
-  thumb_index = 1
+  image_index += 1 
   thumbs.each do |thumb|
-  #  p thumb.xpath('img').attribute('src').value
-   gallery_url = url+"gallery/#{thumb_index}/"
-   save_thumbnail(org_id, gallery_url) 
-   thumb_index += 1
+    p gallery_url = url+"gallery/#{image_index}/"
+    save_thumbnail(org_id, gallery_url, image_index) 
+    image_index += 1
   end
 
   #description
-  p node.xpath('div[@class="outline"]').text
+  description = node.xpath('div[@class="outline"]').text
  
   #staff 
   staffs = node.xpath('div[@class="staffcast"]/div[@class="staffBox"]/dl/dd/a')
   staffs.each do |staff|
-    p staff.text
+    # p staff.text
   end
 
   #casts
   casts = node.xpath('div[@class="staffcast"]/div[@class="castBox"]/ul/li/span/a')
   casts.each do |cast|
-    p cast.text
+    # p cast.text
   end
+
+  output_csv(title, description, 0, image_index, released_at, org_id)
 
 end
