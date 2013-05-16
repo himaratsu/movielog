@@ -5,8 +5,8 @@ require 'action_dispatch/middleware/session/dalli_store'
 Movielog::Application.config.session_store :dalli_store
 Movielog::Application.config.session_options = {
   :cookie_only => false,
-  :key => SESSION_STORE_KEY,
-  :memcache_server => SESSION_MEMCACHE_SERVER,
+  :key => '_session',
+  :memcache_server => '127.0.0.1:11211',
   :expire_after => 1.days
 }
 

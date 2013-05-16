@@ -8,7 +8,7 @@ nicknames = ["himaratsu", "yonestra", "paranichian", "kakkcy", "g", "masaru"]
     name: names[idx % 6],
     nickname: nicknames[idx % 6],
     email: nicknames[idx % 6]+"@sample.com",
-    encrypt_password: SecureRandom::hex(25),
+    password_digest: SecureRandom::hex(25),
     admin_flag: [0, 1][idx % 2],
     icon_url: "icon_url_#{idx}",
     sex: [0, 1][idx % 2],
