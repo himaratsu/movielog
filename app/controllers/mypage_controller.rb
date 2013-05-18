@@ -14,12 +14,15 @@ class MypageController < ApplicationController
     @followed_count = Friend.num_of_followed(@my_id)    
 
     # ログに追加している映画のリスト
-    @user_movie_ids = UserMovieState.find(:all, :select => :movie_id, :conditions => ['user_id = ?', @my_id], :order => 'updated_at desc') 
+    @user_movie_ids = UserMovieState.find(:all, :select => :movie_id, :conditions => ['user_id = ?', @my_id], :order => 'updated_at DESC') 
     @movie_ids = Array.new
     @user_movie_ids.each do |user_movie_id|
       @movie_ids.push(user_movie_id.movie_id)
     end
     @movies = Movie.find(:all, :conditions => 'id IN(' + @movie_ids.join(",") + ')' )
+
+    # 自分が書いたレビューのリスト
+    @reviews = Review.find(:all, :conditions => ['user_id = ?', @my_id], :order => 'updated_at DESC')
 
   end
 end

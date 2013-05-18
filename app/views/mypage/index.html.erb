@@ -24,3 +24,13 @@
 <% end %>
 </ul>
 
+<h2>最近書いたレビュー</h2>
+<table border="1">
+<% @reviews.each do |review| %>
+  <tr>
+    <td><%= review.movie_id %></td>
+    <td><%= link_to review.comment, review_path(review.id) %></td>
+    <td><%= review.rate %></td>
+  </tr>
+<% end %>
+</table>
