@@ -4,16 +4,16 @@ class Movie < ActiveRecord::Base
   
   has_many :reviews
   #
-  #== key ¤Ç¥½¡¼¥È¤·¤¿±Ç²è¾ðÊó¤òÊÖµÑ¤¹¤ë
+  #== key ã§ã‚½ãƒ¼ãƒˆã—ãŸæ˜ ç”»æƒ…å ±ã‚’è¿”å´ã™ã‚‹
   #
   def self.get_all_data(key)
-    # ¥½¡¼¥È¥­¡¼¤¬Àµ¤·¤¯¤Ê¤¤¾ì¹ç¤Ïid¤Ç¥½¡¼¥È
+    # ã‚½ãƒ¼ãƒˆã‚­ãƒ¼ãŒæ­£ã—ããªã„å ´åˆã¯idã§ã‚½ãƒ¼ãƒˆ
     unless self._is_correct_key(key)
       key = "id"
     end
 
     order = "DESC"
-    # ¥¿¥¤¥È¥ë¤Î¾ì¹ç¤Î¤ß¾º½ç
+    # ã‚¿ã‚¤ãƒˆãƒ«ã®å ´åˆã®ã¿æ˜‡é †
     if key == "title" 
       order = "ASC"
     end
@@ -25,10 +25,10 @@ class Movie < ActiveRecord::Base
   end
 
   #
-  #== ¥½¡¼¥È¥­¡¼¤Î¥Ð¥ê¥Ç¡¼¥·¥ç¥ó¤ò¹Ô¤¦
+  #== ã‚½ãƒ¼ãƒˆã‚­ãƒ¼ã®ãƒãƒªãƒ‡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¡Œã†
   #
   def self._is_correct_key(key)
-    # ¥«¥é¥àÌ¾°ìÍ÷¤òÇÛÎó¤Ç¼èÆÀ
+    # ã‚«ãƒ©ãƒ åä¸€è¦§ã‚’é…åˆ—ã§å–å¾—
     columns = self.column_names
     return columns.include?(key)
   end
