@@ -14,7 +14,7 @@ describe UsersController do
         :name => 'name',
         :nickname => 'nickname',
         :email => 'name@sample.com',
-        :encrypt_password => 'encrypt_password',
+        :password => 'password',
         :admin_flag => 0,
         :icon_url => 'icon_url',
         :sex => 1,

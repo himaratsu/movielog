@@ -6,10 +6,8 @@ describe FriendsController do
      :name => 'name',
      :nickname => 'nickname',
      :email => 'name@sample.com',
-     :encrypt_password => 'encrypt_password',
-     :admin_flag => 0,
-     :icon_url => 'icon_url',
-     :sex => 1,
+     :password => 'password',
+     :icon_url => 'icon_url'
    )
   end
 
@@ -22,7 +20,7 @@ describe FriendsController do
 
   describe "GET 'unfollow'" do
     it "redirect users#show" do
-      get :unfollow, { :id => @user.id }
+      delete :unfollow, { :id => @user.id }
       response.should redirect_to(:controller=>'users', :action=>'show')
     end
   end
