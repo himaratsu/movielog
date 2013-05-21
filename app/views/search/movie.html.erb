@@ -1,4 +1,4 @@
-<h1>検索結果画面（映画）</h1>
+<h1>映画検索結果</h1>
 
 <div>
   <b><%= @keyword %></b> で検索した結果
@@ -8,29 +8,7 @@
 <%= paginate @movies, :window => 4, :outer_window => 2 %>
 
 <% if @movies.empty? %>
-ヒットした映画はありません
+  ヒットした映画はありません
 <% else %>
-
-<% @movies.each do |movie| %>
-<table border="1">
-  <tr>
-    <td>タイトル</td>
-    <td><%= movie.title %></td>
-  </tr>
-  <tr>
-    <td>説明</td>
-    <td><%= movie.description %></td>
-  </tr>
-  <tr>
-    <td>画像URL</td>
-    <td><%= movie.image_url %></td>
-  </tr>
-  <tr>
-    <td colspan ='2'>
-      <%= link_to '詳細画面へすすむ', movie_path(movie.id) %>
-    </td>
-  </td>
-</table>
-<% end %>
-
+  <%= render 'shared/movie_list' %>
 <% end %>
