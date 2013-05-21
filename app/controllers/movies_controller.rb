@@ -1,3 +1,4 @@
+# coding: utf-8
 class MoviesController < ApplicationController
   def index
     @movies = Movie.order('id').page(params[:page]).per(10)
@@ -9,11 +10,9 @@ class MoviesController < ApplicationController
   end
 
   def show
+    my_id = 1 # TODO: use session_id
     @movie = Movie.find(params[:id])
-    @reviews = Kaminari.paginate_array(Review.find(:all, :conditions => { :movie_id => params[:id] }, :order => 'updated_at desc')).page(params[:page]).per(2)
-  end
-
-  def new
-    @movie = Movie.new
+    @user_movie_state = UserMovieState.get_user_movie_state(my_id, @movie.id)
+    @reviews = Kaminari.paginate_array(@movie.reviews.order('updated_at DESC')).page(params[:page]).per(10)
   end
 end

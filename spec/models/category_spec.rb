@@ -2,15 +2,18 @@
 require 'spec_helper'
 
 describe Category do
-  describe 'validate' do
-    context 'title is empty' do
-      before do
-        @category = Category.new(:title => '')
-      end
+  describe 'title' do
+    subject { Category.new(:title => 'title') }
 
-      it 'fails validation of presence' do
-        @category.should_not be_valid 
-      end
+    context 'when not empty' do
+      it { should be_valid  }
+    end
+
+    context 'when empty' do
+      it { 
+        subject.title = ''
+        should_not be_valid  
+      }
     end
   end
 end

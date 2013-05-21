@@ -93,6 +93,8 @@ ActiveRecord::Schema.define(:version => 20130514171538) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "user_movie_states", ["user_id", "movie_id"], :name => "unique_index", :unique => true
+
   create_table "users", :force => true do |t|
     t.string   "name",                                        :null => false
     t.string   "nickname",                                    :null => false

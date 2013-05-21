@@ -4,6 +4,16 @@
 映画の詳細情報が表示される
 </div>
 
+<% if notice %>
+<p id="notice"><font color="red"><%= notice %></font></p>
+<% end %>
+
+<p>
+<%= button_to "観たい!", :controller => "user_movie_states", :action => "register", :state_id => 1, :movie_id => @movie.id %>
+<%= button_to "観た!",  :controller => "user_movie_states", :action => "register", :state_id => 2, :movie_id => @movie.id %>
+<%= button_to "未分類",  :controller => "user_movie_states", :action => "register", :state_id => 0, :movie_id => @movie.id %>
+</p>
+
 <table border="1">
   <tr>
     <td>id</td>
@@ -84,6 +94,7 @@
 <% end %>
 
 
-<p><%= link_to 'この映画のレビューを投稿する', { controller:"reviews", action:"new",movie_id:@movie.id } %></p>
+
+<p><%= link_to 'この映画のレビューを投稿する', new_movie_review_path(@movie) %></p>
 
 <p><%= link_to '一覧に戻る', movies_path %></p>

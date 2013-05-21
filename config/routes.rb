@@ -4,18 +4,23 @@ Movielog::Application.routes.draw do
 
   match 'top/'            => 'top#index',  :as => :top
 
-  resources :movies, only: [:index, :show]
+  resources :users, only: [:index, :show]
   resources :users
-  resources :reviews
+  resources :movies do
+    resources :reviews
+  end
+
+  #resource :reviews, only: [:new, :create, :show]
+  match 'user_movie_states/register' => 'user_movie_states#register', :as => :state_register
+  match 'search/movie/'   => 'search#movie', :as => :search_movie
+  match 'search/user/'    => 'search#user', :as => :search_user
+  match 'friends/follow/:id'   => 'friends#follow',   :as => :friend_follow
+  match 'friends/unfollow/:id' => 'friends#unfollow', :as => :friend_unfollow
+  match 'mypage'         => 'mypage#index',     :as => :mypage
+  match 'movies/sort/:key'    => 'movies#sort', :as => :movies_sort
   match 'login'                 => 'sessions#new',      :as => :login,          :via => :get
   match 'login'                 => 'sessions#create',   :as => :login,          :via => :post
   match 'logout'                => 'sessions#destroy',  :as => :logout,         :via => :delete
-  match 'search/movie/'         => 'search#movie',      :as => :search_movie
-  match 'search/user/'          => 'search#user',       :as => :search_user
-  match 'friends/follow/:id'    => 'friends#follow',    :as => :friend_follow,  :via => :get
-  match 'friends/unfollow/:id'  => 'friends#unfollow',  :as => :friend_unfollow,:via => :delete
-  match 'mypage'                => 'mypage#index',      :as => :mypage
-  match 'movies/sort/:key'      => 'movies#sort',       :as => :movies_sort
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
