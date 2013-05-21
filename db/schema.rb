@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511094215) do
+ActiveRecord::Schema.define(:version => 20130514171538) do
 
   create_table "actors", :force => true do |t|
     t.integer  "movie_id",   :null => false
@@ -96,16 +96,16 @@ ActiveRecord::Schema.define(:version => 20130511094215) do
   add_index "user_movie_states", ["user_id", "movie_id"], :name => "unique_index", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "name",                                         :null => false
-    t.string   "nickname",                                     :null => false
-    t.string   "email",                                        :null => false
-    t.string   "encrypt_password",                             :null => false
-    t.integer  "admin_flag",       :limit => 1, :default => 0, :null => false
+    t.string   "name",                                        :null => false
+    t.string   "nickname",                                    :null => false
+    t.string   "email",                                       :null => false
+    t.string   "password_digest",                             :null => false
+    t.integer  "admin_flag",      :limit => 1, :default => 0, :null => false
     t.string   "icon_url"
-    t.integer  "sex",              :limit => 1, :default => 0, :null => false
+    t.integer  "sex",             :limit => 1, :default => 0, :null => false
     t.datetime "birthday"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
 end

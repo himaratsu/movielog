@@ -37,5 +37,3 @@ Movielog::Application.configure do
 end
 
 # Setting of session
-SESSION_STORE_KEY = '_session'
-SESSION_MEMCACHE_SERVER = '127.0.0.1:11211'

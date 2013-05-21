@@ -5,6 +5,7 @@ Movielog::Application.routes.draw do
   match 'top/'            => 'top#index',  :as => :top
 
   resources :users, only: [:index, :show]
+  resources :users
   resources :movies do
     resources :reviews
   end
@@ -17,6 +18,9 @@ Movielog::Application.routes.draw do
   match 'friends/unfollow/:id' => 'friends#unfollow', :as => :friend_unfollow
   match 'mypage'         => 'mypage#index',     :as => :mypage
   match 'movies/sort/:key'    => 'movies#sort', :as => :movies_sort
+  match 'login'                 => 'sessions#new',      :as => :login,          :via => :get
+  match 'login'                 => 'sessions#create',   :as => :login,          :via => :post
+  match 'logout'                => 'sessions#destroy',  :as => :logout,         :via => :delete
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
