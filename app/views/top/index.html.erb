@@ -1,19 +1,28 @@
 <h1>Movie Logへようこそ</h1>
 
-<h2>映画を検索</h2>
-<%= form_tag :search_movie, method: :get do %>
-<p><%= text_field_tag "q", params[:q] %>
-<%= submit_tag "検索" %></p>
+<% if current_user %>
+こんにちは、<%= current_user.name %> さん！<br>
+<%= link_to 'あなたの登録した映画を見る', mypage_path %>
+<% else %>
+自分の見た映画を登録するためには<%= link_to '会員登録', new_user_path %>が必要です
 <% end %>
 
-<h2>ユーザを検索</h2>
-<%= form_tag :search_user, method: :get do %>
-<p><%= text_field_tag "q", params[:q] %>
-<%= submit_tag "検索" %></p>
-<% end %>
 
 <h2>新着の映画</h2>
-<h2>人気ランキング</h2>
+最近上映された順に5件表示します。
+<br><br>
+
+<% if @movies.empty? %>
+  最近の映画はありません
+<% else %>
+  <% @movies.each do |movie| %>
+  <table border="1">
+    <tr><td><%= link_to image_tag('rails.png', {:border => '0'}), movie_path(movie.id) %></td></tr>
+    <tr><td><%= movie.title %></td></tr>
+  </table>
+  <br>
+  <% end %>
+<% end %>
 
 <h3><%= link_to '登録されている映画一覧へ', movies_path %></h3>
 <h3><%= link_to '登録ユーザ一覧', users_path %></h3>
